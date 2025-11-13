@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cláudio Store - Ofertas e Cupons</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Popup de boas-vindas -->
+  <div id="popupBoasVindas">👋 Seja bem-vindo à <strong>Cláudio Store!</strong></div>
+
+  <header>
+    <h1>🛍️ Cláudio Store</h1>
+    <p>As melhores promoções e cupons exclusivos das lojas parceiras!</p>
+  </header>
+
+  <nav class="menu">
+    <a href="index.html">🏠 Início</a>
+    <a href="categorias.html">🛍 Categorias</a>
+    <a href="lojas-populares.html">🏪 Lojas Populares</a>
+    <a href="especiais.html">✨ Especiais</a>
+    <a href="fale-conosco.html">📩 Fale Conosco</a>
+    <a href="politica-privacidade.html">🔒 Privacidade</a>
+  </nav>
+
+  <main>
+    <h2>🔥 Ofertas em Destaque</h2>
+
+    <div id="produtos" class="grid">
+      <a href="https://www.amazon.com.br" target="_blank" class="card">
+        <h3>Descontos Amazon</h3>
+        <p>Ofertas com até 50% de desconto</p>
+      </a>
+
+      <a href="https://shopee.com.br" target="_blank" class="card">
+        <h3>Ofertas Shopee</h3>
+        <p>Produtos com frete grátis e promoções relâmpago</p>
+      </a>
+
+      <a href="https://www.magazineluiza.com.br" target="_blank" class="card">
+        <h3>Magazine Luiza</h3>
+        <p>Descontos especiais para você</p>
+      </a>
+
+      <a href="https://www.americanas.com.br" target="_blank" class="card">
+        <h3>Americanas</h3>
+        <p>Promoções exclusivas do site parceiro</p>
+      </a>
+    </div>
+
+    <!-- Seção de comentários -->
+    <section class="comentarios">
+      <h2>💬 Deixe seu comentário</h2>
+      <textarea id="comentario" rows="3" placeholder="O que achou das promoções?"></textarea><br>
+      <button onclick="adicionarComentario()">Enviar comentário</button>
+      <div id="listaComentarios" class="lista-comentarios"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>📩 Contato: <a href="mailto:claudiosomm@yahoo.com.br">claudiosomm@yahoo.com.br</a></p>
+    <p>© 2025 Cláudio Store - Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
