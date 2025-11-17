@@ -7,59 +7,68 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header>
-    <h1>🛍️ modas</h1>
-    <p>Encontre o que você precisa nas principais categorias da Cláudio Store</p>
+    <h1>🛍️ Moda</h1>
+    <p>Encontre o que você precisa nas principais seções da Cláudio Store</p>
   </header>
 
-
+  <!-- MENU RESPONSIVO -->
   <nav class="menu">
-    <a href="index.html">🏠 Início</a>
-    <a href="categorias.html">🛍 Categorias</a>
-    <a href="lojas-populares.html">🏪 Lojas Populares</a>
-    <a href="especiais.html">✨ Especiais</a>
-    <a href="fale-conosco.html">📩 Fale Conosco</a>
-    <a href="politica-privacidade.html">🔒 Privacidade</a>
-  </nav>
+      <div class="menu-toggle" id="menuToggle">☰</div>
 
+      <div class="menu-links" id="menuLinks">
+        <a href="index.html">🏠 Início</a>
+        <a href="categorias.html">🛍 Categorias</a>
+        <a href="lojas-populares.html">🏪 Lojas Populares</a>
+        <a href="especiais.html">✨ Especiais</a>
+        <a href="politica-privacidade.html">🔒 Privacidade</a>
+      </div>
+  </nav>
 
   <main>
     <h2>📚 Explore por categoria</h2>
+
     <div class="grid">
 
-
-      <!-- CATEGORIA: MODA -->
-      <div class="card categoria">
+      <!-- As categorias são preenchidas automaticamente pelo JS -->
+      <div class="card categoria" data-cat="Moda">
         <span class="categoria-titulo">👕 Moda ▾</span>
-        <div class="subcategorias">
-        <a href="riachuelo.html">🛍️ Riachuelo</a>
-        <a href="Besni">Besni</a>
-        </div>
+        <div class="subcategorias"></div>
       </div>
-     
-      <a href="#" class="card">🏗️ Materiais de Construção</a>
-      <a href="#" class="card">💻 Eletrônicos</a>
-      <a href="#" class="card">🏠 Casa e Decoração</a>
-      <a href="#" class="card">📱 Celulares e Acessórios</a>
-      <a href="#" class="card">🧴 Beleza e Cuidados Pessoais</a>
-      <a href="#" class="card">🎮 Games e Consoles</a>
-      <a href="#" class="card">👶 Infantil e Brinquedos</a>
-      <a href="#" class="card">🍳 Utilidades Domésticas</a>
-      <a href="#" class="card">🚗 Automotivo</a>
-      <a href="#" class="card">🐾 Pets</a>
-      <a href="#" class="card">📚 Livros e Papelaria</a>
-      <a href="#" class="card">💡 Iluminação</a>
-      <a href="#" class="card">🧰 Ferramentas</a>
-      <a href="#" class="card">⚽ Esporte e Lazer</a>
+
+      <div class="card categoria" data-cat="moda">
+        <span class="Besni">🏗️ Besni ▾</span>
+        <div class="subcategorias"></div>
+      </div>
+
+      <div class="card categoria" data-cat="moda">
+        <span class="Skala">💻 Skala ▾</span>
+        <div class="subcategorias"></div>
+      </div>
+
+      <div class="card categoria" data-cat="Beleza">
+        <span class="categoria-titulo">🧴 Beleza ▾</span>
+        <div class="subcategorias"></div>
+      </div>
+
+      <div class="card categoria" data-cat="Infantil">
+        <span class="categoria-titulo">👶 Infantil ▾</span>
+        <div class="subcategorias"></div>
+      </div>
+
+      <div class="card categoria" data-cat="Automotivo">
+        <span class="categoria-titulo">🚗 Automotivo ▾</span>
+        <div class="subcategorias"></div>
+      </div>
+
     </div>
   </main>
-
 
   <footer>
     <p>📩 Contato: <a href="mailto:claudiosomm@yahoo.com.br">claudiosomm@yahoo.com.br</a></p>
     <p>© 2025 Cláudio Store - Todos os direitos reservados.</p>
   </footer>
-
 
   <script src="script.js"></script>
 </body>
