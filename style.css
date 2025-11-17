@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     background: linear-gradient(to bottom right, #e3f2fd, #bbdefb);
     margin: 0;
-    margin-bottom: 40px; /* respiro antes do rodapé */
+    margin-bottom: 40px;
     color: #1e3a8a;
   }
   
@@ -19,7 +19,7 @@ body {
     margin: 15px 0;
   }
   
-  /* ======== MENU SUPERIOR ======== */
+  /* ======== MENU ======== */
   .menu {
     display: flex;
     justify-content: center;
@@ -35,14 +35,13 @@ body {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    transition: 0.3s;
   }
   
   .menu a:hover {
     text-decoration: underline;
   }
   
-  /* ======== GRID DE PRODUTOS ======== */
+  /* ======== GRID ======== */
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -63,31 +62,7 @@ body {
     transform: scale(1.05);
   }
   
-  .card img {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-  
-  .card a {
-    color: #1e88e5;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  .card a:hover {
-    text-decoration: underline;
-  }
-  
-  /* ======== RODAPÉ ======== */
-  footer {
-    background: #e3f2fd;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-  }
-  
-  /* ======== POPUP DE BOAS-VINDAS ======== */
+  /* ======== POPUP ======== */
   #popupBoasVindas {
     display: none;
     position: fixed;
@@ -128,7 +103,6 @@ body {
     border: 1px solid #90caf9;
     resize: none;
     font-size: 15px;
-    box-sizing: border-box;
   }
   
   .comentarios button {
@@ -139,94 +113,28 @@ body {
     border-radius: 6px;
     color: white;
     cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .comentarios button:hover {
-    background-color: #1565c0;
   }
   
   .lista-comentarios {
     margin-top: 15px;
-    text-align: left;
   }
   
   .lista-comentarios p {
-    background: #fff;
-    padding: 8px;
-    border-radius: 6px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.05);
-    margin-bottom: 8px;
+    background: #ffffff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin: 10px auto;
     font-size: 15px;
+    width: 95%;
+    border-left: 4px solid #1e88e5;
   }
   
-  /* ======== CATEGORIAS E SUBCATEGORIAS ======== */
-  .categoria {
-    background: white;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    transition: 0.3s;
-    cursor: pointer;
-  }
-  
-  .categoria:hover {
-    transform: scale(1.03);
-  }
-  
-  .categoria-titulo {
-    font-weight: bold;
-    text-align: center;
-    font-size: 18px;
-    color: #1e3a8a;
-    margin-bottom: 10px;
-  }
-  
-  .subcategorias {
-    display: none;
-    background: #f8faff;
-    border-radius: 10px;
-    margin-top: 10px;
-    padding: 10px;
-    box-shadow: inset 0 0 8px rgba(0,0,0,0.1);
-  }
-  
-  .subcategorias a {
-    display: block;
-    color: #1e88e5;
-    text-decoration: none;
-    padding: 6px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-  
-  .subcategorias a:hover {
+  /* ======== FOOTER ======== */
+  footer {
     background: #e3f2fd;
-  }
-  
-  .categoria.ativa .subcategorias {
-    display: block;
-  }
-  
-  /* ======== MEDIA QUERIES - PARA RESPONSSIVIDADE ======== */
-  
-  /* Para telas pequenas */
-  @media (max-width: 768px) {
-    .menu {
-      flex-direction: column;
-    }
-  
-    .grid {
-      padding: 10px;
-      grid-template-columns: 1fr 1fr;
-    }
-  
-    .comentarios {
-      max-width: 90%;
-    }
-  
-    .card {
-      padding: 10px;
-    }
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
   }
   
