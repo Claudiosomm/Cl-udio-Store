@@ -208,3 +208,25 @@ body {
     display: block;
   }
   
+  /* ======== MEDIA QUERIES - PARA RESPONSSIVIDADE ======== */
+  
+  /* Para telas pequenas */
+  @media (max-width: 768px) {
+    .menu {
+      flex-direction: column;
+    }
+  
+    .grid {
+      padding: 10px;
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .comentarios {
+      max-width: 90%;
+    }
+  
+    .card {
+      padding: 10px;
+    }
+  }
+  
