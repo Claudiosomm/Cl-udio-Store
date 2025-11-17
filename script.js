@@ -5,6 +5,7 @@ function adicionarComentario() {
   
     // Verifica se o comentário não está vazio
     if (comentario.trim() !== "") {
+  
       // Carrega os comentários existentes do localStorage
       let comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
   
@@ -27,11 +28,13 @@ function adicionarComentario() {
     // Carrega os comentários do localStorage
     let comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
   
-    // Limpa a lista de comentários atual
+    // Elemento que receberá os comentários
     const listaComentarios = document.getElementById("listaComentarios");
+  
+    // Limpa antes de reinserir (evita duplicações)
     listaComentarios.innerHTML = "";
   
-    // Exibe cada comentário na tela
+    // Exibe cada comentário armazenado
     comentarios.forEach(comentario => {
       const p = document.createElement("p");
       p.textContent = comentario;
@@ -39,8 +42,6 @@ function adicionarComentario() {
     });
   }
   
-  // Carrega os comentários ao carregar a página
-  window.onload = function() {
-    exibirComentarios();
-  };
+  // Carrega automaticamente os comentários ao carregar a página
+  document.addEventListener("DOMContentLoaded", exibirComentarios);
   
