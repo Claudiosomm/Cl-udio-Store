@@ -1,59 +1,46 @@
-// ======== POPUP DE BOAS-VINDAS ========
-window.addEventListener('load', () => {
-    const popup = document.getElementById('popupBoasVindas');
-    if (popup) {
-      popup.style.display = 'block';
-      setTimeout(() => {
-        popup.style.display = 'none';
-      }, 4000);
+// Função para adicionar um comentário
+function adicionarComentario() {
+    // Pega o valor do comentário
+    const comentario = document.getElementById("comentario").value;
+  
+    // Verifica se o comentário não está vazio
+    if (comentario.trim() !== "") {
+      // Carrega os comentários existentes do localStorage
+      let comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+  
+      // Adiciona o novo comentário ao array
+      comentarios.push(comentario);
+  
+      // Salva o array atualizado no localStorage
+      localStorage.setItem("comentarios", JSON.stringify(comentarios));
+  
+      // Limpa o campo de comentário
+      document.getElementById("comentario").value = "";
+  
+      // Atualiza a lista de comentários
+      exibirComentarios();
     }
-  });
- 
-  // ======== ABRIR E FECHAR SUBCATEGORIAS ========
-  document.addEventListener('DOMContentLoaded', () => {
-    const categorias = document.querySelectorAll('.categoria');
- 
-    categorias.forEach(categoria => {
-      categoria.addEventListener('click', () => {
-        // Fecha as outras categorias abertas
-        categorias.forEach(c => {
-          if (c !== categoria) c.classList.remove('ativa');
-        });
- 
-        // Alterna a categoria clicada
-        categoria.classList.toggle('ativa');
-      });
+  }
+  
+  // Função para exibir os comentários na página
+  function exibirComentarios() {
+    // Carrega os comentários do localStorage
+    let comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+  
+    // Limpa a lista de comentários atual
+    const listaComentarios = document.getElementById("listaComentarios");
+    listaComentarios.innerHTML = "";
+  
+    // Exibe cada comentário na tela
+    comentarios.forEach(comentario => {
+      const p = document.createElement("p");
+      p.textContent = comentario;
+      listaComentarios.appendChild(p);
     });
-  });
- 
-  // ======== SISTEMA DE COMENTÁRIOS ========
-  document.addEventListener('DOMContentLoaded', () => {
-    const btnEnviar = document.getElementById('enviarComentario');
-    const inputComentario = document.getElementById('comentarioTexto');
-    const lista = document.getElementById('listaComentarios');
- 
-    if (btnEnviar && inputComentario && lista) {
-      // Carrega comentários salvos
-      const comentariosSalvos = JSON.parse(localStorage.getItem('comentarios')) || [];
-      comentariosSalvos.forEach(c => adicionarComentarioNaTela(c));
- 
-      // Enviar novo comentário
-      btnEnviar.addEventListener('click', () => {
-        const texto = inputComentario.value.trim();
-        if (texto === '') return alert('Digite algo antes de enviar!');
- 
-        adicionarComentarioNaTela(texto);
-        comentariosSalvos.push(texto);
-        localStorage.setItem('comentarios', JSON.stringify(comentariosSalvos));
- 
-        inputComentario.value = '';
-      });
- 
-      // Função para adicionar na tela
-      function adicionarComentarioNaTela(texto) {
-        const p = document.createElement('p');
-        p.textContent = texto;
-        lista.appendChild(p);
-      }
-    }
-  });
+  }
+  
+  // Carrega os comentários ao carregar a página
+  window.onload = function() {
+    exibirComentarios();
+  };
+  
