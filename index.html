@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
   <!-- Popup de boas-vindas -->
   <div id="popupBoasVindas">👋 Seja bem-vindo à <strong>Cláudio Store!</strong></div>
 
@@ -26,6 +27,7 @@
 
   <main>
     <h2>🔥 Ofertas em Destaque</h2>
+
     <div id="produtos" class="grid">
       <a href="https://www.amazon.com.br" target="_blank" class="card">
         <h3>Descontos Amazon</h3>
@@ -33,26 +35,28 @@
       </a>
 
       <a href="https://shopee.com.br" target="_blank" class="card">
-        <h3>Ofertas Shopee</h3>
-        <p>Produtos com frete grátis e promoções relâmpago</p>
+        <h3>Shopee</h3>
+        <p>Frete grátis e promoções relâmpago</p>
       </a>
 
       <a href="https://www.magazineluiza.com.br" target="_blank" class="card">
         <h3>Magazine Luiza</h3>
-        <p>Descontos especiais para você</p>
+        <p>Descontos exclusivos</p>
       </a>
 
       <a href="https://www.americanas.com.br" target="_blank" class="card">
         <h3>Americanas</h3>
-        <p>Promoções exclusivas do site parceiro</p>
+        <p>Ofertas especiais</p>
       </a>
     </div>
 
-    <!-- Seção de comentários -->
+    <!-- COMENTÁRIOS -->
     <section class="comentarios">
       <h2>💬 Deixe seu comentário</h2>
+
       <textarea id="comentario" rows="3" placeholder="O que achou das promoções?"></textarea><br>
       <button onclick="adicionarComentario()">Enviar comentário</button>
+
       <div id="listaComentarios" class="lista-comentarios"></div>
     </section>
   </main>
