@@ -1,71 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EconomizeJá — Cupons e Ofertas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 
-// Dados fictícios
-const partners = ["Amazon","Mercado Livre","Renner","Dafiti","Casas Bahia","Leroy Merlin","Shopee","Havan","Centauro","Magazine Luiza"]
-const categories = ["Moda Infantil","Moda Feminina","Moda Masculina","Construção","Eletrônicos","Casa","Esportes","Brinquedos","Pet","Viagens"]
-const deals = [
-  {id:1,shop:'Renner',discount:'30% OFF',desc:'Roupas selecionadas',uses:150,coupon:'RENNER30'},
-  {id:2,shop:'Amazon',discount:'R$50 OFF',desc:'Compras acima de R$250',uses:88,coupon:'AMZ50'},
-  {id:3,shop:'Casas Bahia',discount:'15% OFF',desc:'Eletro e móveis',uses:45,coupon:'CB15'}
-]
+  <!-- CSS separado -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#">Economize<span>Já</span></a>
 
-const $ = (s)=>document.querySelector(s)
+      <form id="search-form" class="search">
+        <input id="search-input" placeholder="Buscar cupons..." />
+        <button type="submit">🔍</button>
+      </form>
 
-function renderPartners(){
-  const grid = $('#partners-grid')
-  grid.innerHTML = partners.map(p=>`<div class='partner-logo'>${p}</div>`).join('')
-}
-function renderCategories(){
-  $('#categories-list').innerHTML = categories.map(c=>`<button class='category-pill'>${c}</button>`).join('')
-}
-function renderDeals(){
-  $('#deals-grid').innerHTML = deals.map(d=>`
-    <div class='card'>
-      <div class='shop'>${d.shop}</div>
-      <div class='discount'>${d.discount}</div>
-      <div class='desc'>${d.desc}</div>
-      <div class='card-actions'>
-        <button class='btn-apply' data-id='${d.id}'>Usar Cupom</button>
-        <div style='margin-left:auto;color:gray;font-size:.9rem'>${d.uses} usos</div>
+      <div class="header-actions">
+        <button id="dark-toggle">🌓</button>
+        <button id="favorites-btn">⭐ <span id="fav-count">0</span></button>
+        <button id="login-btn" class="btn-ghost">Entrar</button>
       </div>
-    </div>`
-  ).join('')
-}
-function renderTop10(){
-  $('#top10-list').innerHTML = deals.map(d=>`
-    <li class='top10-item'><strong>${d.shop}</strong> — ${d.discount}</li>`
-  ).join('')
-}
+    </div>
 
-// Modal
-function openModal(id){
-  const d = deals.find(x=>x.id===id)
-  if(!d) return
-  $('#modal-content').innerHTML = `
-    <h3>${d.shop} — ${d.discount}</h3>
-    <p>${d.desc}</p>
-    <p><b>Cupom:</b> <code>${d.coupon}</code></p>
-    <button id='copy-btn' class='btn-primary'>Copiar</button>`
-  $('#coupon-modal').setAttribute('aria-hidden','false')
-  setTimeout(()=>{
-    $('#copy-btn').onclick = ()=> navigator.clipboard.writeText(d.coupon)
-  },30)
-}
-function closeModal(){
-  $('#coupon-modal').setAttribute('aria-hidden','true')
-}
+    <nav class="categories">
+      <div class="container categories-inner" id="categories-list"></div>
+    </nav>
+  </header>
 
-// Eventos
-function setupEvents(){
-  document.body.addEventListener('click',e=>{
-    if(e.target.classList.contains('btn-apply')) openModal(Number(e.target.dataset.id))
-  })
-  document.querySelector('.modal-close').onclick = closeModal
-  $('#dark-toggle').onclick = ()=> document.documentElement.classList.toggle('dark')
-}
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>Os melhores cupons das maiores lojas.</h1>
+          <p>Economize em roupas, construção, eletrônicos e muito mais.</p>
+          <div class="hero-cta">
+            <a href="#deals" class="btn-primary">Ver Cupons</a>
+            <a href="#partners" class="btn-outline">Parceiras</a>
+          </div>
+        </div>
+        <div class="hero-illustration"><div class="illustration-card">💸</div></div>
+      </div>
+    </section>
 
-// Init
-enderPartners()
-renderCategories()
-renderDeals()
-renderTop10()
-setupEvents()
+    <section class="partners" id="partners">
+      <div class="container">
+        <h2>Lojas Parceiras</h2>
+        <div class="partners-grid" id="partners-grid"></div>
+      </div>
+    </section>
+
+    <section class="deals" id="deals">
+      <div class="container">
+        <h2>Cupons em Destaque</h2>
+        <div class="deals-grid" id="deals-grid"></div>
+      </div>
+    </section>
+
+    <section class="top10">
+      <div class="container">
+        <h2>Top 10 Hoje</h2>
+        <ol id="top10-list" class="top10-list"></ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="col"><h4>EconomizeJá</h4><p>Encontre cupons e ofertas com segurança.</p></div>
+      <div class="col"><h4>Parceiros</h4><ul><li>Amazon</li><li>Renner</li><li>Casas Bahia</li></ul></div>
+      <div class="col"><h4>Suporte</h4><ul><li>Contato</li><li>Privacidade</li></ul></div>
+    </div>
+    <div class="container footer-bottom">© 2025 EconomizeJá</div>
+  </footer>
+
+  <!-- Modal de cupom -->
+  <div id="coupon-modal" class="modal" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close">✖</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- JS separado -->
+  <script src="script.js"></script>
+</body>
+</html>
