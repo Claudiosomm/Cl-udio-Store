@@ -1,47 +1,71 @@
-// Função para adicionar um comentário
-function adicionarComentario() {
-    // Pega o valor do comentário
-    const comentario = document.getElementById("comentario").value;
-  
-    // Verifica se o comentário não está vazio
-    if (comentario.trim() !== "") {
-  
-      // Carrega os comentários existentes do localStorage
-      let comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
-  
-      // Adiciona o novo comentário ao array
-      comentarios.push(comentario);
-  
-      // Salva o array atualizado no localStorage
-      localStorage.setItem("comentarios", JSON.stringify(comentarios));
-  
-      // Limpa o campo de comentário
-      document.getElementById("comentario").value = "";
-  
-      // Atualiza a lista de comentários
-      exibirComentarios();
-    }
-  }
-  
-  // Função para exibir os comentários na página
-  function exibirComentarios() {
-    // Carrega os comentários do localStorage
-    let comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
-  
-    // Elemento que receberá os comentários
-    const listaComentarios = document.getElementById("listaComentarios");
-  
-    // Limpa antes de reinserir (evita duplicações)
-    listaComentarios.innerHTML = "";
-  
-    // Exibe cada comentário armazenado
-    comentarios.forEach(comentario => {
-      const p = document.createElement("p");
-      p.textContent = comentario;
-      listaComentarios.appendChild(p);
-    });
-  }
-  
-  // Carrega automaticamente os comentários ao carregar a página
-  document.addEventListener("DOMContentLoaded", exibirComentarios);
-  
+
+// Dados fictícios
+const partners = ["Amazon","Mercado Livre","Renner","Dafiti","Casas Bahia","Leroy Merlin","Shopee","Havan","Centauro","Magazine Luiza"]
+const categories = ["Moda Infantil","Moda Feminina","Moda Masculina","Construção","Eletrônicos","Casa","Esportes","Brinquedos","Pet","Viagens"]
+const deals = [
+  {id:1,shop:'Renner',discount:'30% OFF',desc:'Roupas selecionadas',uses:150,coupon:'RENNER30'},
+  {id:2,shop:'Amazon',discount:'R$50 OFF',desc:'Compras acima de R$250',uses:88,coupon:'AMZ50'},
+  {id:3,shop:'Casas Bahia',discount:'15% OFF',desc:'Eletro e móveis',uses:45,coupon:'CB15'}
+]
+
+const $ = (s)=>document.querySelector(s)
+
+function renderPartners(){
+  const grid = $('#partners-grid')
+  grid.innerHTML = partners.map(p=>`<div class='partner-logo'>${p}</div>`).join('')
+}
+function renderCategories(){
+  $('#categories-list').innerHTML = categories.map(c=>`<button class='category-pill'>${c}</button>`).join('')
+}
+function renderDeals(){
+  $('#deals-grid').innerHTML = deals.map(d=>`
+    <div class='card'>
+      <div class='shop'>${d.shop}</div>
+      <div class='discount'>${d.discount}</div>
+      <div class='desc'>${d.desc}</div>
+      <div class='card-actions'>
+        <button class='btn-apply' data-id='${d.id}'>Usar Cupom</button>
+        <div style='margin-left:auto;color:gray;font-size:.9rem'>${d.uses} usos</div>
+      </div>
+    </div>`
+  ).join('')
+}
+function renderTop10(){
+  $('#top10-list').innerHTML = deals.map(d=>`
+    <li class='top10-item'><strong>${d.shop}</strong> — ${d.discount}</li>`
+  ).join('')
+}
+
+// Modal
+function openModal(id){
+  const d = deals.find(x=>x.id===id)
+  if(!d) return
+  $('#modal-content').innerHTML = `
+    <h3>${d.shop} — ${d.discount}</h3>
+    <p>${d.desc}</p>
+    <p><b>Cupom:</b> <code>${d.coupon}</code></p>
+    <button id='copy-btn' class='btn-primary'>Copiar</button>`
+  $('#coupon-modal').setAttribute('aria-hidden','false')
+  setTimeout(()=>{
+    $('#copy-btn').onclick = ()=> navigator.clipboard.writeText(d.coupon)
+  },30)
+}
+function closeModal(){
+  $('#coupon-modal').setAttribute('aria-hidden','true')
+}
+
+// Eventos
+function setupEvents(){
+  document.body.addEventListener('click',e=>{
+    if(e.target.classList.contains('btn-apply')) openModal(Number(e.target.dataset.id))
+  })
+  document.querySelector('.modal-close').onclick = closeModal
+  $('#dark-toggle').onclick = ()=> document.documentElement.classList.toggle('dark')
+}
+
+// Init
+enderPartners()
+renderCategories()
+renderDeals()
+renderTop10()
+setupEvents()
